@@ -455,13 +455,15 @@ a:focus-visible {
   box-shadow: var(--shadow-lg);
   border-color: var(--color-green);
 }
+.service-card { overflow: hidden; } /* clip img inside card */
 .service-img {
   width: 100%;
-  aspect-ratio: 4/3;
+  height: 220px;   /* fixed height — object-fit handles cropping */
   object-fit: cover;
   object-position: center;
   display: block;
 }
+@media (min-width: 1024px) { .service-img { height: 200px; } }
 .service-body { padding: var(--space-3); }
 .service-icon {
   width: 44px; height: 44px;
@@ -495,18 +497,19 @@ a:focus-visible {
   overflow: hidden;
   border-radius: var(--radius);
   background-color: var(--color-border);
+  aspect-ratio: 3/4; /* ratio on container, not img */
 }
 .gallery-item img {
   width: 100%;
-  aspect-ratio: 3/4;
+  height: 100%;    /* fill container completely — no gray gaps */
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   display: block;
   transition: transform 400ms ease-out;
 }
 @media (min-width: 640px) {
-  .gallery-item:nth-child(1) img,
-  .gallery-item:nth-child(6) img { aspect-ratio: 4/3; }
+  .gallery-item:nth-child(1),
+  .gallery-item:nth-child(6) { aspect-ratio: 16/10; }
 }
 .gallery-item:hover img { transform: scale(1.04); }
 
@@ -572,6 +575,57 @@ a:focus-visible {
   margin-bottom: 0.25rem;
 }
 .why-point-text p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
+
+/* --- Service Areas --- */
+.areas { background-color: var(--color-surface); }
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+@media (min-width: 640px) { .areas-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.area-county {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+}
+.area-county h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--color-green);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(29,158,117,0.2);
+}
+.area-county ul { list-style: none; display: flex; flex-direction: column; gap: 0.375rem; }
+.area-county li {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.area-county li::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-green);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+.areas-note {
+  text-align: center;
+  margin-top: var(--space-6);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+.areas-note a { font-weight: 600; }
 
 /* --- CTA Banner --- */
 .cta-banner {
