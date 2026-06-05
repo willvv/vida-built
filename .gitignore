@@ -2,6 +2,8 @@
 .secrets
 *.env
 .env*
+google-service-account.json
+google-service-account-*.json
 
 # Cloudflare
 .wrangler/
