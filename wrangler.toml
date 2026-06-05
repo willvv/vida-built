@@ -1,0 +1,13 @@
+name = "vida-built"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "."
+
+# Secrets required (set via Cloudflare dashboard or wrangler secret put):
+#   GMAIL_CLIENT_ID      — Google OAuth client ID
+#   GMAIL_CLIENT_SECRET  — Google OAuth client secret
+#   GMAIL_REFRESH_TOKEN  — Gmail offline refresh token for willvv@gmail.com
+#
+# These are the same credentials used in the artingol project.
+# To copy from artingol, use the Cloudflare dashboard:
+#   dash.cloudflare.com → Pages → artingol → Settings → Environment variables
+#   Then add the same values to vida-built.

@@ -8,6 +8,17 @@ google-service-account-*.json
 # Cloudflare
 .wrangler/
 
+# Raw/unedited source images — not for deployment
+img/unedited/
+
+# Playwright test artifacts
+.playwright-mcp/
+
+# Screenshots
+*.png
+!img/*.png
+!favicon.svg
+
 # OS
 .DS_Store
 Thumbs.db
