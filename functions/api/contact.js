@@ -99,6 +99,17 @@ export async function onRequestPost({ request, env }) {
       );
     }
 
+    // Log the submission before attempting to send, so we never lose a lead's
+    // contact details even if the Gmail send fails. Visible in Cloudflare logs.
+    console.log('[contact] Submission:', JSON.stringify({
+      name: name.trim(),
+      phone: phone.trim(),
+      email: String(email).trim(),
+      description: String(description).trim().slice(0, 500),
+      ip: request.headers.get('CF-Connecting-IP') || '',
+      time: new Date().toISOString(),
+    }));
+
     if (!env.GMAIL_CLIENT_ID || !env.GMAIL_REFRESH_TOKEN) {
       console.error('[contact] Gmail secrets not configured — skipping email');
       return new Response(JSON.stringify({ ok: true }), { headers: corsHeaders });
